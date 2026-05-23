@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Harshad | Cinematic Studio — Video & Photo Graphi</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #03050B;
+      color: #EDEDF0;
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    /* custom cinematic scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #11131f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #E2B25B;
+      border-radius: 10px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* header - glass cinematic */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(3, 5, 11, 0.88);
+      backdrop-filter: blur(14px);
+      z-index: 999;
+      border-bottom: 1px solid rgba(226, 178, 91, 0.3);
+      padding: 18px 0;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(130deg, #F5E7C8, #E2B25B);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: #E2B25B;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #f0f0f0;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #E2B25B;
+      border-bottom: 2px solid #E2B25B;
+      padding-bottom: 5px;
+    }
+
+    .btn-cine {
+      background: #E2B25B;
+      color: #03050B;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-cine:hover {
+      background: #ffcd7e;
+      transform: scale(1.02);
+    }
+
+    /* hero section — shutter + cinematic video mood */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(ellipse at 30% 40%, #121624, #010101);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.3) 0px, rgba(0,0,0,0.3) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content {
+      flex: 1.2;
+    }
+    .badge-shutter {
+      background: rgba(226, 178, 91, 0.18);
+      backdrop-filter: blur(4px);
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      border-left: 3px solid #E2B25B;
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero-content h1 .highlight {
+      color: #E2B25B;
+      text-shadow: 0 0 8px rgba(226,178,91,0.3);
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #b7bbc9;
+      max-width: 550px;
+      margin-bottom: 32px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: #E2B25B;
+      border: none;
+      padding: 14px 34px;
+      font-weight: 700;
+      border-radius: 50px;
+      color: #0a0c14;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .btn-primary:hover {
+      background: #f5ca7a;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -12px #e2b25b50;
+    }
+    .btn-outline-cine {
+      background: transparent;
+      border: 1.5px solid #E2B25B;
+      padding: 14px 34px;
+      border-radius: 50px;
+      font-weight: 600;
+      color: #E2B25B;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-outline-cine:hover {
+      background: rgba(226, 178, 91, 0.1);
+    }
+    .hero-video-box {
+      flex: 1;
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 30px 35px -15px black;
+      border: 1px solid rgba(226,178,91,0.5);
+    }
+    .hero-video-box video {
+      width: 100%;
+      display: block;
+      border-radius: 28px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .shutter-icon {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      padding: 8px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: #E2B25B;
+    }
+
+    /* section common */
+    .section {
+      padding: 100px 0;
+    }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .section-title span {
+      color: #E2B25B;
+    }
+    .section-sub {
+      text-align: center;
+      color: #a0a5b8;
+      margin-top: 12px;
+      margin-bottom: 60px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* cinematic video reel */
+    .reel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    .video-card {
+      background: #0E121F;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 1px solid #262c3c;
+    }
+    .video-card:hover {
+      border-color: #E2B25B;
+      transform: translateY(-6px);
+    }
+    .video-thumb {
+      position: relative;
+      cursor: pointer;
+    }
+    .video-thumb video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .video-card:hover .play-overlay {
+      opacity: 1;
+    }
+    .play-overlay i {
+      font-size: 3rem;
+      color: #E2B25B;
+      filter: drop-shadow(0 0 5px black);
+    }
+    .video-info {
+      padding: 20px;
+    }
+    .video-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+    }
+    .video-info p {
+      color: #9c9fb0;
+      font-size: 0.85rem;
+    }
+
+    /* photo graphi gallery (cinematic photography) */
+    .photo-gallery {
+      background: linear-gradient(145deg, #080b14 0%, #020308 100%);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .photo-item {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      cursor: pointer;
+      border: 1px solid #262e40;
+      transition: all 0.3s;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .photo-item:hover img {
+      transform: scale(1.05);
+    }
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(0deg, #000000cc, transparent);
+      padding: 20px 16px 12px;
+      transform: translateY(100%);
+      transition: 0.3s;
+      font-weight: 500;
+    }
+    .photo-item:hover .photo-caption {
+      transform: translateY(0);
+    }
+    .photo-caption span {
+      color: #E2B25B;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    /* about director */
+    .about-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: center;
+    }
+    .about-text h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .cine-quote {
+      border-left: 4px solid #E2B25B;
+      padding-left: 24px;
+      margin: 28px 0;
+      font-style: italic;
+      color: #cfcfdf;
+    }
+
+    /* booking / contact */
+    .contact-cine {
+      background: rgba(14, 18, 31, 0.7);
+      border-radius: 48px;
+      backdrop-filter: blur(8px);
+      padding: 60px 48px;
+      border: 1px solid #2d3448;
+    }
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+    }
+    .contact-left {
+      flex: 1;
+    }
+    .contact-left h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .detail-line {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 18px 0;
+    }
+    .detail-line i {
+      width: 28px;
+      color: #E2B25B;
+    }
+    .form-right {
+      flex: 1;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      background: #10141f;
+      border: 1px solid #2b3040;
+      padding: 14px 20px;
+      border-radius: 48px;
+      color: white;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #E2B25B;
+    }
+    .submit-btn {
+      background: #E2B25B;
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      font-weight: bold;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid #1f2538;
+      font-size: 0.8rem;
+      color: #7c7f92;
+    }
+    @media (max-width: 860px) {
+      .container { padding: 0 24px; }
+      .hero-content h1 { font-size: 2.6rem; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-bar">
+    <div class="logo">
+      <h1>HARSHAD CINEMATIC<span>📽️ SHUTTER & FRAME</span></h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#videoReel">Video Reel</a></li>
+      <li><a href="#photoGraphi">Photo Graphi</a></li>
+      <li><a href="#about">Vision</a></li>
+      <li><a href="#contact">Book Session</a></li>
+    </ul>
+    <button class="btn-cine" id="bookNavBtn">🎬 Book Now</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO with cinematic shutter video demo -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge-shutter"><i class="fas fa-video"></i>  CINEMATIC SHUTTER | 4K RAW + FILM LOOK</div>
+        <h1>Where <span class="highlight">cinematic shutter</span> meets <span class="highlight">photo graphi</span> soul.</h1>
+        <p>Harshad's signature blend: cinematic video aesthetics + high-end photography. Every frame tells a story, every click is emotion.</p>
+        <div class="btn-group">
+          <button class="btn-primary" id="exploreReelBtn">Watch Showreel</button>
+          <button class="btn-outline-cine" id="contactBtnNow">Book a Shoot</button>
+        </div>
+      </div>
+      <div class="hero-video-box">
+        <video autoplay muted loop playsinline poster="https://images.pexels.com/photos/1121493/pexels-photo-1121493.jpeg?auto=compress&cs=tinysrgb&w=600">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-film-reel-of-a-camera-lens-32829-large.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="shutter-icon"><i class="fas fa-camera"></i> 24fps · cinematic grade</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO REEL SECTION - Cinematic video shutter works -->
+  <section id="videoReel" class="section">
+    <div class="container">
+      <h2 class="section-title">Cinematic <span>Video Reel</span> <i class="fas fa-film"></i></h2>
+      <div class="section-sub">Dynamic storytelling — music videos, wedding films, brand commercials. The shutter never stops.</div>
+      <div class="reel-grid" id="videoReelGrid">
+        <!-- dynamic video cards with sample cinematic clips -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO GRAPHI GALLERY -->
+  <section id="photoGraphi" class="section photo-gallery">
+    <div class="container">
+      <h2 class="section-title">Photo <span>Graphi</span> | Still Frames</h2>
+      <div class="section-sub">High contrast, emotional portraits & cinematic photography — each image has a filmic texture.</div>
+      <div class="gallery-grid" id="photoGrid"></div>
+    </div>
+  </section>
+
+  <!-- About / Director vision -->
+  <section id="about" class="section">
+    <div class="container about-flex">
+      <div class="about-text">
+        <h3>Harshad Senamatic — <br>Shutter & Soul Architect</h3>
+        <p>With a background in cinematography and fine art photography, Harshad crafts visual poetry. "Senamatic" defines his signature: high-end video shutter techniques blended with photographic graphi — where each frame works as a photograph, each photo breathes cinematic motion.</p>
+        <div class="cine-quote">
+          “I don't capture moments, I build them frame by frame — whether it's a video shutter or a still graphi, the story is king.”
+        </div>
+        <p>Featured in 15+ film festivals & Vogue India. Harshad's team uses RED Komodo, ARRI light setups and custom LUTs to deliver that undeniable 'cinematic feel'.</p>
+      </div>
+      <div class="about-text">
+        <img src="https://images.pexels.com/photos/3256822/pexels-photo-3256822.jpeg?auto=compress&cs=tinysrgb&w=600" alt="cinematic director" style="width:100%; border-radius: 32px; border: 1px solid #e2b25b;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Booking -->
+  <section id="contact" class="section">
+    <div class="container contact-cine">
+      <div class="contact-wrapper">
+        <div class="contact-left">
+          <h3>🎥 Let's craft your cinematic story</h3>
+          <p>Wedding films, advertising, portrait sessions — we bring the shutter and graphi together. Fill the form, we'll get back within 12h.</p>
+          <div class="detail-line"><i class="fas fa-map-pin"></i> Mumbai | Delhi | Goa (Worldwide)</div>
+          <div class="detail-line"><i class="fas fa-phone-alt"></i> +91 99887 66550</div>
+          <div class="detail-line"><i class="fas fa-envelope"></i> hello@harshadcine.com</div>
+          <div class="detail-line"><i class="fab fa-instagram"></i> @harshad.senamatic</div>
+        </div>
+        <div class="form-right">
+          <form id="bookingFormCine">
+            <div class="form-group"><input type="text" id="fullname" placeholder="Full name *" required></div>
+            <div class="form-group"><input type="email" id="emailid" placeholder="Email address *" required></div>
+            <div class="form-group"><input type="text" id="phoneNum" placeholder="Phone / WhatsApp"></div>
+            <div class="form-group">
+              <select id="projectType">
+                <option disabled selected>Select service type</option>
+                <option>Cinematic Wedding Film</option>
+                <option>Music Video / Brand Film</option>
+                <option>Photo Graphi Portrait</option>
+                <option>Fashion / Editorial Shoot</option>
+              </select>
+            </div>
+            <div class="form-group"><textarea rows="3" id="projectMsg" placeholder="Describe your vision / date..."></textarea></div>
+            <button type="submit" class="submit-btn">Send Request →</button>
+            <div id="formCineMsg" style="margin-top: 14px; text-align:center; font-size:0.8rem;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="container">
+    <p>© 2025 Harshad Senamatic Studio — Cinematic Shutter + Photo Graphi. All frames are stories.</p>
+  </div>
+</footer>
+
+<script>
+  // VIDEO REEL DATA (cinematic shutter style)
+  const videoReels = [
+    { title: "THE SHUTTER VISION", desc: "Cinematic montage | wedding highlights", videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-filmmaker-setting-up-a-camera-on-tripod-32827-large.mp4" },
+    { title: "GOLDEN HOUR GRAPHI", desc: "Portrait film / slow motion", videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-woman-with-long-hair-walking-in-slow-motion-32824-large.mp4" },
+    { title: "CINEMATIC SHUTTER", desc: "Commercial fashion reel", videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-b-roll-of-a-man-working-in-a-studio-32828-large.mp4" },
+    { title: "FRAME & MOTION", desc: "Dance & performance film", videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-close-up-of-an-old-camera-lens-32830-large.mp4" }
+  ];
+
+  function buildVideoReel() {
+    const container = document.getElementById('videoReelGrid');
+    if (!container) return;
+    container.innerHTML = '';
+    videoReels.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      card.innerHTML = `
+        <div class="video-thumb" data-video-src="${item.videoSrc}">
+          <video muted playsinline poster="https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=600">
+            <source src="${item.videoSrc}" type="video/mp4">
+          </video>
+          <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+        </div>
+        <div class="video-info">
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    // Add hover play/pause effect and click to play/pause on thumbnail
+    document.querySelectorAll('.video-card .video-thumb').forEach(thumb => {
+      const videoElem = thumb.querySelector('video');
+      if(videoElem) {
+        // hover to play preview , mouse leave pause/reset
+        thumb.addEventListener('mouseenter', () => {
+          videoElem.play().catch(e => console.log("autoplay blocked"));
+        });
+        thumb.addEventListener('mouseleave', () => {
+          videoElem.pause();
+          videoElem.currentTime = 0;
+        });
+        // click to open larger window? but just toggles play/pause for user experience
+        thumb.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if(videoElem.paused) {
+            videoElem.play();
+          } else {
+            videoElem.pause();
+          }
+        });
+      }
+    });
+  }
+
+  // PHOTO GRAPHI GALLERY (cinematic photography)
+  const photosArray = [
+    { url: "https://images.pexels.com/photos/2385549/pexels-photo-2385549.jpeg?auto=compress&cs=tinysrgb&w=600", name: "Senamatic Portrait" },
+    { url: "https://images.pexels.com/photos/2372720/pexels-photo-2372720.jpeg?auto=compress&cs=tinysrgb&w=600", name: "Film Noir Graphi" },
+    { url: "https://images.pexels.com/photos/2897861/pexels-photo-2897861.jpeg?auto=compress&cs=tinysrgb&w=600", name: "Cinematic Shutter Still" },
+    { url: "https://images.pexels.com/photos/2747464/pexels-photo-2747464.jpeg?auto=compress&cs=tinysrgb&w=600", name: "Analog Mood" },
+    { url: "https://images.pexels.com/photos/1925334/pexels-photo-1925334.jpeg?auto=compress&cs=tinysrgb&w=600", name: "Graphi Light" },
+    { url: "https://images.pexels.com/photos/3240306/pexels-photo-3240306.jpeg?auto=compress&cs=tinysrgb&w=600", name: "Shutter Emotion" }
+  ];
+  
+  function buildPhotoGallery() {
+    const galleryContainer = document.getElementById('photoGrid');
+    if(!galleryContainer) return;
+    galleryContainer.innerHTML = '';
+    photosArray.forEach(photo => {
+      const item = document.createElement('div');
+      item.className = 'photo-item';
+      item.innerHTML = `
+        <img src="${photo.url}" alt="${photo.name}" loading="lazy">
+        <div class="photo-caption"><span>📸 ${photo.name}</span></div>
+      `;
+      galleryContainer.appendChild(item);
+    });
+  }
+
+  // smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinkItems = document.querySelectorAll('.nav-links a');
+  function updateActive() {
+    let currentId = '';
+    const scrollPosition = window.scrollY + 120;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if(scrollPosition >= top && scrollPosition < top + height) {
+        currentId = section.getAttribute('id');
+      }
+    });
+    navLinkItems.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href').substring(1);
+      if(href === currentId) {
+        link.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', updateActive);
+  window.addEventListener('load', () => {
+    updateActive();
+    buildVideoReel();
+    buildPhotoGallery();
+  });
+
+  // Button triggers
+  document.getElementById('exploreReelBtn')?.addEventListener('click', () => {
+    document.getElementById('videoReel')?.scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('contactBtnNow')?.addEventListener('click', () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('bookNavBtn')?.addEventListener('click', () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Form submission
+  const cineForm = document.getElementById('bookingFormCine');
+  const feedbackMsg = document.getElementById('formCineMsg');
+  if(cineForm) {
+    cineForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameVal = document.getElementById('fullname')?.value.trim();
+      const emailVal = document.getElementById('emailid')?.value.trim();
+      if(!nameVal || !emailVal) {
+        feedbackMsg.innerHTML = '⚠️ Please fill name & email to request.';
+        feedbackMsg.style.color = '#f5b07e';
+        return;
+      }
+      feedbackMsg.innerHTML = `✨ Thank you ${nameVal}, Harshad's team will reach out with a cinematic moodboard!`;
+      feedbackMsg.style.color = '#E2B25B';
+      cineForm.reset();
+      setTimeout(() => { feedbackMsg.innerHTML = ''; }, 5000);
+    });
+  }
+
+  // Additional smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = this.getAttribute('href');
+      if(target === '#') return;
+      const elem = document.querySelector(target);
+      if(elem) {
+        e.preventDefault();
+        elem.scrollIntoView({ behavior: 'smooth' });
+        history.pushState(null, null, target);
+      }
+    });
+  });
+</script>
+</body>
+</html>
